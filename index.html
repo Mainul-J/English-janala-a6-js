@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Learn English Login page</title>
 
+    <!-- font-awesome  -->
+<script src="https://kit.fontawesome.com/ef4cd9f538.js" crossorigin="anonymous"></script>
+
     <!-- daisy ui  and tailwind -->
     <link
       href="https://cdn.jsdelivr.net/npm/daisyui@5"
@@ -16,8 +19,8 @@
     <style></style>
   </head>
   <body>
-    <header class="py-4 bg-gray-300">
-      <nav class="flex justify-between items-center w-10/12 mx-auto">
+    <header id="header" class="py-4 bg-gray-300">
+      <nav id="nav" class="flex justify-between items-center w-10/12 mx-auto">
         <!-- nav left side / logo in left side  -->
         <div class="flex justify-center items-center">
           <h2 class="flex items-center justify-center text-xl font-semibold">
@@ -45,7 +48,7 @@
 
     <main>
       <!-- banner section -->
-      <section class="py-12">
+      <section id="banner" class="py-14">
         <div
           class="w-10/12 mx-auto flex flex-col-reverse lg:flex-row items-center justify-between lg:gap-10"
         >
@@ -62,18 +65,22 @@
             </p>
 
             <input
+              id="name"
               type="text"
               placeholder="Enter your Name"
               class="input block input-bordered w-full max-w-sm"
+              value="mainul"
             />
 
             <input
+              id="password"
               type="password"
               placeholder="Password (123456)"
               class="input input-bordered w-full max-w-sm"
+              value="123456"
             />
 
-            <button class="btn btn-primary block">Login</button>
+            <button id="login" class="btn btn-primary block">Login</button>
           </div>
 
           <!-- Image -->
@@ -84,31 +91,50 @@
       </section>
 
       <!-- learn vocabularies -->
+          <section class="py-20  my-0">
 
-      <section class="text-center py-12">
-        <h2 class="text-3xl font-semibold">
-          <span class="text-blue-200">Let's </span> Learn Vocabularies
-        </h2>
-        <div class="flex gap-5 place-content-center py-10">
-          <button id="#" class="btn btn-outline btn-primary">1</button>
-          <button id="#" class="btn btn-outline btn-primary">2</button>
-          <button id="#" class="btn btn-outline btn-primary">3</button>
-          <button id="#" class="btn btn-outline btn-primary">4</button>
-          <button id="#" class="btn btn-outline btn-primary">5</button>
-          <button id="#" class="btn btn-outline btn-primary">6</button>
-          <button id="#" class="btn btn-outline btn-primary">7</button>
-        </div>
+            <div id="btn" class="flex gap-4 py-10 justify-center items-center">
 
-        <div
-          class="h-[700px] bg-slate-300 flex place-content-center flex-col py-10"
-        >
-          <h2 class="py-5 text-xs">আপনি এখনো কোন Lesson Select করেন নি</h2>
-          <p class="text-2xl font-bold">একটি Lesson Select করুন।</p>
-        </div>
-      </section>
+            </div>
+            <div class="bg-slate-200 p-10">
+              <!-- headline -->
+            <div class="text-center ">
+                <h2 class="font-bold text-xl py-5"><span class="text-blue-500">let's</span> Learn Vocabulary</h2>
+            </div>
+            <!-- show messages -->
+            <div id="content" class="grid grid-cols-3 w-10/12 mx-auto gap-20">
+              <div class="text-center col-span-full ">
+              <small>আপনি এখনো কোন Lesson Select করেন নি</small>
+              <h1>একটি Lesson Select করুন।</h1>
+              </div>
+
+            </div>
+            </div>
+            
+
+
+            <!-- modal -->
+            <!-- Open the modal using ID.showModal() method -->
+
+
+<!-- Open the modal using ID.showModal() method -->
+<!-- <button class="btn" onclick="my_modal_2.showModal()">open modal</button> -->
+<dialog id="modal" class="modal">
+  <div id="modal-box" class="modal-box bg-sky-300">
+
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+          </section>
+
       <!-- 3rd section  -->
 
-      <section class="w-10/12 mx-auto text-center py-20 h-[500px] my-20">
+      <section
+        id="faq"
+        class="w-10/12 mx-auto text-center py-20 h-[500px] my-20"
+      >
         <h2 class="text-2xl font-bold m-10">
           <span class="text-blue-400">Frequently</span> Asked Questions
         </h2>
@@ -156,7 +182,7 @@
       </section>
     </main>
 
-    <footer class="w-10/12 mx-auto mt-20">
+    <footer id="footer" class="w-10/12 mx-auto mt-20">
       <div class="flex items-center justify-between">
         <div class="py-5 space-y-3">
           <h2 class="flex place-items-center">
@@ -178,6 +204,5 @@
     </footer>
   </body>
 
-<script src="./JS/index.js"></script>
-
+  <script src="./JS/index.js"></script>
 </html>
