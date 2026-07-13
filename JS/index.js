@@ -10,6 +10,28 @@ const faq = (document.getElementById("faq").style.display = "none");
 
 const footer = (document.getElementById("footer").style.display = "none");
 
+
+
+
+function showLoader() {
+  const loader = document.getElementById('loading');
+  loader.classList.remove('hidden');
+  loader.classList.add('block');
+}
+
+function hideLoader() {
+  const loader = document.getElementById('loading');
+  loader.classList.remove('block');
+  loader.classList.add('hidden');
+}
+
+
+
+
+
+
+
+
 const login = document.getElementById("login").addEventListener("click", () => {
   const name = document.getElementById("name").value;
   console.log(name);
@@ -36,9 +58,13 @@ const login = document.getElementById("login").addEventListener("click", () => {
 });
 
 const loadCatBtn = () => {
+  showLoader()
   fetch(`https://openapi.programming-hero.com/api/levels/all`)
     .then((res) => res.json())
-    .then((data) => displayCatBtn(data.data));
+    .then((data) => {
+      hideLoader()
+      displayCatBtn(data.data)
+    });
 };
 
 const displayCatBtn = (buttons) => {
@@ -54,11 +80,16 @@ const displayCatBtn = (buttons) => {
 };
 
 const loadWordByLevel = (id) => {
+
+    showLoader()
   const url = `https://openapi.programming-hero.com/api/level/${id}`;
 
   fetch(url)
     .then((res) => res.json())
-    .then((data) => showLevelWords(data.data));
+    .then((data) => {
+      hideLoader()
+      showLevelWords(data.data)
+    });
 };
 
 const showLevelWords = (words) => {
