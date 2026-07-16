@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html class="scroll-smooth" lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,10 +16,26 @@
     />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <style></style>
+      <!-- sweet alert cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- bangla font  -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+        <!-- style  -->
+
+            <style type="text/tailwindcss">
+      @theme {
+        --color-clifford: #da373d;
+        --font-bangla : "Tiro Bangla", serif ;
+        --font-poppins:"Poppins", sans-serif;
+      }
+    </style>
+
   </head>
-  <body>
-    <header id="header" class="py-4 bg-gray-300">
+  <body class="font-poppins">
+    <header id="header" class="py-4 bg-gray-300 fixed top-0 left-0 w-full z-50 shadow-sm">
       <nav id="nav" class="flex justify-between items-center w-10/12 mx-auto">
         <!-- nav left side / logo in left side  -->
         <div class="flex justify-center items-center">
@@ -29,13 +45,13 @@
         </div>
         <!-- nav left side / 3 btn -->
         <div class="flex justify-center items-center gap-3">
-          <button class="btn btn-outline btn-info flex gap-2">
+          <a href="#faq"><button class="btn btn-outline btn-info flex gap-2">
             <span><img src="./assets/fa-circle-question.png" alt="" /></span>FAQ
-          </button>
-          <button class="btn btn-outline btn-info flex gap-2">
+          </button></a>
+          <a href="#learn"><button class="btn btn-outline btn-info flex gap-2">
             <span><img src="./assets/fa-book-open.png" alt="" /></span>Learn
-          </button>
-          <button class="btn btn-outline btn-info flex gap-2">
+          </button></a>
+          <button id="logout" class="btn btn-outline btn-info flex gap-2">
             <span
               ><img
                 src="./assets/fa-arrow-right-from-bracket.png"
@@ -46,7 +62,7 @@
       </nav>
     </header>
 
-    <main>
+    <main class="pt-20">
 
       <!-- banner section -->
       <section id="banner" class="py-14">
@@ -92,7 +108,7 @@
       </section>
 
       <!-- learn vocabularies -->
-          <section class="py-20  my-0">
+          <section id="learn" class="py-20  my-0">
 
             <div id="btn" class="flex gap-4 py-10 justify-center items-center">
 
@@ -104,7 +120,7 @@
             </div>
             <!-- show messages -->
             <div id="content" class="grid grid-cols-3 w-10/12 mx-auto gap-20">
-              <div class="text-center col-span-full ">
+              <div class="text-center col-span-full font-bangla">
               <small>আপনি এখনো কোন Lesson Select করেন নি</small>
               <h1>একটি Lesson Select করুন।</h1>
               </div>
@@ -139,7 +155,7 @@
 
       <!-- 3rd section  -->
 
-      <section
+      <!-- <section
         id="faq"
         class="w-10/12 mx-auto text-center py-20 h-[500px] my-20"
       >
@@ -187,11 +203,176 @@
             </div>
           </div>
         </div>
-      </section>
+      </section> -->
+
+      <section
+  id="faq"
+  class="w-10/12 mx-auto text-center py-20 my-20"
+>
+  <h2 class="text-2xl font-bold m-10">
+    <span class="text-blue-400">Frequently</span> Asked Questions
+  </h2>
+
+  <div class="join join-vertical bg-base-100">
+
+    <!-- Question 1 -->
+    <div class="collapse collapse-arrow join-item border-base-300 border">
+      <input type="radio" name="faq-accordion" checked="checked" />
+      <div class="collapse-title font-semibold">
+        What is the difference between var, let, and const in JavaScript?
+      </div>
+
+      <div class="collapse-content text-sm text-left">
+        <p>
+          <b>Answer:</b> 
+          var, let, and const are used to declare variables in JavaScript.
+          var is the older way and follows function scope. let and const were
+          introduced in ES6 and follow block scope. The value of let can be
+          changed, but const cannot be reassigned after declaration.
+        </p>
+
+        <br>
+
+        <p>
+          <b>বাংলা:</b>
+          var, let এবং const JavaScript এ variable তৈরি করার জন্য ব্যবহার করা হয়।
+          var পুরনো পদ্ধতি এবং এটি function scope অনুসরণ করে। let এবং const ES6 এ
+          এসেছে এবং block scope অনুসরণ করে। let এর value পরিবর্তন করা যায়,
+          কিন্তু const এর value পরিবর্তন করা যায় না।
+        </p>
+      </div>
+    </div>
+
+
+    <!-- Question 2 -->
+    <div class="collapse collapse-arrow join-item border-base-300 border">
+      <input type="radio" name="faq-accordion" />
+
+      <div class="collapse-title font-semibold">
+        What is the difference between map(), forEach(), and filter()?
+      </div>
+
+      <div class="collapse-content text-sm text-left">
+
+        <p >
+          <b>Answer:</b>
+          map() creates a new array by changing every element.
+          forEach() executes a function for each element but does not return a
+          new array. filter() creates a new array with elements that match a
+          specific condition.
+        </p>
+
+        <br>
+
+        <p class="font-bangla">
+          <b>বাংলা:</b>
+          map() প্রতিটি element এর উপর কাজ করে নতুন array তৈরি করে।
+          forEach() প্রতিটি element এর উপর function চালায় কিন্তু নতুন array
+          return করে না। filter() condition অনুযায়ী element বাছাই করে নতুন
+          array তৈরি করে।
+        </p>
+
+      </div>
+    </div>
+
+
+    <!-- Question 3 -->
+    <div class="collapse collapse-arrow join-item border-base-300 border">
+      <input type="radio" name="faq-accordion" />
+
+      <div class="collapse-title font-semibold">
+        What are arrow functions and how are they different from regular functions?
+      </div>
+
+      <div class="collapse-content text-sm text-left">
+
+        <p>
+          <b>Answer:</b>
+          Arrow functions are a shorter way to write functions in JavaScript.
+          Unlike regular functions, arrow functions do not have their own this
+          value. They get this from their surrounding scope.
+        </p>
+
+        <br>
+
+        <p>
+          <b>বাংলা:</b>
+          Arrow function হলো JavaScript এ function লেখার সহজ পদ্ধতি।
+          Regular function এর নিজস্ব this থাকে, কিন্তু arrow function এর নিজস্ব
+          this থাকে না। এটি বাইরের scope থেকে this গ্রহণ করে।
+        </p>
+
+      </div>
+    </div>
+
+
+    <!-- Question 4 -->
+    <div class="collapse collapse-arrow join-item border-base-300 border">
+      <input type="radio" name="faq-accordion" />
+
+      <div class="collapse-title font-semibold">
+        How do JavaScript Promises work?
+      </div>
+
+      <div class="collapse-content text-sm text-left">
+
+        <p>
+          <b>Answer:</b>
+          A Promise represents the success or failure of an asynchronous
+          operation. It has three states: pending, fulfilled, and rejected.
+          We use then() for success and catch() for errors.
+        </p>
+
+        <br>
+
+        <p>
+          <b>বাংলা:</b>
+          Promise হলো asynchronous operation এর সফলতা বা ব্যর্থতার ফলাফল
+          প্রকাশ করার একটি object। এর তিনটি state আছে: pending, fulfilled,
+          এবং rejected। সফল ফলাফলের জন্য then() এবং error এর জন্য catch()
+          ব্যবহার করা হয়।
+        </p>
+
+      </div>
+    </div>
+
+
+    <!-- Question 5 -->
+    <div class="collapse collapse-arrow join-item border-base-300 border">
+      <input type="radio" name="faq-accordion" />
+
+      <div class="collapse-title font-semibold">
+        How do closures work in JavaScript?
+      </div>
+
+      <div class="collapse-content text-sm text-left">
+
+        <p>
+          <b>Answer:</b>
+          A closure allows a function to remember variables from its outer
+          function even after the outer function has finished executing.
+        </p>
+
+        <br>
+
+        <p>
+          <b>বাংলা:</b>
+          Closure এমন একটি feature যেখানে একটি function তার বাইরের function
+          এর variable মনে রাখতে পারে, এমনকি বাইরের function execution শেষ
+          হয়ে গেলেও।
+        </p>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
     </main>
 
-    <footer id="footer" class="w-10/12 mx-auto mt-20">
-      <div class="flex items-center justify-between">
+    <footer id="footer" class="bg-blue-100 shadow-sm">
+      <div class="flex items-center justify-between w-10/12 mx-auto mt-20">
         <div class="py-5 space-y-3">
           <h2 class="flex place-items-center">
             English<span><img src="./assets/logo.png" alt="" /></span>জানালা
@@ -203,9 +384,9 @@
         <div>
           <h3 class="text-2xl font-semibold space-y-2">Follow on us</h3>
           <div class="flex gap-10 py-2">
-            <img src="./assets/fb-thumb.png" alt="" />
-            <img src="./assets/instagram-thumb.png" alt="" />
-            <img src="./assets/github-thumb.png" alt="" />
+            <a href="#" target="_blank" rel="noopener noreferrer"><img src="./assets/fb-thumb.png" alt="" /></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"><img src="./assets/instagram-thumb.png" alt="" /></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"><img src="./assets/github-thumb.png" alt="" /></a>
           </div>
         </div>
       </div>

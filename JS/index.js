@@ -1,15 +1,23 @@
 // alert ('connected')
 
-const header = (document.getElementById("header").style.display = "none");
+const header = document.getElementById("header").style.display = "none";
 
-const banner = (document.getElementById("banner").style.display = "block");
+const banner = document.getElementById("banner").style.display = "block";
 
-// const learn = (document.getElementById("learn").style.display = "none");
+const learn = document.getElementById("learn").style.display = "none";
 
-const faq = (document.getElementById("faq").style.display = "none");
+const faq = document.getElementById("faq").style.display = "none";
 
-const footer = (document.getElementById("footer").style.display = "none");
+const footer = document.getElementById("footer").style.display = "block";
 
+
+const removeActive = () => {
+  const activeBtns = document.querySelectorAll(".btn-active");
+
+  for (const btn of activeBtns) {
+    btn.classList.remove("btn-active");
+  }
+};
 
 
 
@@ -39,25 +47,64 @@ const login = document.getElementById("login").addEventListener("click", () => {
   console.log(typeof password);
   if (name !== "") {
     if (password === "123456") {
-      const header = (document.getElementById("header").style.display =
-        "block");
-      const banner = (document.getElementById("banner").style.display = "none");
 
-      // const learn = (document.getElementById("learn").style.display = "block");
+      Swal.fire({
+  title: "Login Successful",
+  text: "Welcome to English Janala",
+  icon: "success"
+});
 
-      const faq = (document.getElementById("faq").style.display = "block");
+      const header = document.getElementById("header").style.display =
+        "block";
+      const banner = document.getElementById("banner").style.display = "none";
 
-      const footer = (document.getElementById("footer").style.display =
-        "block");
+      const learn = document.getElementById("learn").style.display = "block";
+
+      const faq = document.getElementById("faq").style.display = "block";
+
+      const footer = document.getElementById("footer").style.display =
+        "block";
     } else {
-      alert("wrong password");
+      Swal.fire({
+    title:"Invalid Password ",
+    text:"input correct password",
+    icon:"error"
+});
     }
   } else {
-    alert("input valid nameS");
+Swal.fire({
+    title:"Name Required",
+    text:"Please enter your name",
+    icon:"warning"
+});
+
   }
 });
 
+
+
+const logout = document.getElementById('logout').addEventListener('click',()=>{
+Swal.fire({
+    title:"Logged Out",
+    text:"See you again",
+    icon:"success"
+});
+
+
+  const header = document.getElementById("header").style.display = "none";
+
+const banner = document.getElementById("banner").style.display = "block";
+
+const learn = document.getElementById("learn").style.display = "none";
+
+const faq = document.getElementById("faq").style.display = "none";
+
+const footer = document.getElementById("footer").style.display = "block";
+
+})
+
 const loadCatBtn = () => {
+
   showLoader()
   fetch(`https://openapi.programming-hero.com/api/levels/all`)
     .then((res) => res.json())
@@ -74,13 +121,14 @@ const displayCatBtn = (buttons) => {
   buttons.forEach((btn) => {
     // console.log(btn);
     const div = document.createElement("div");
-    div.innerHTML = `<button onclick="loadWordByLevel(${btn.level_no})" class="btn btn-outline btn-primary">Lesson-${btn?.level_no}</button>`;
+    div.innerHTML = `<button onclick="loadWordByLevel(${btn.level_no},this)" class="btn btn-outline btn-primary">Lesson-${btn?.level_no}</button>`;
     learn.appendChild(div);
   });
 };
 
-const loadWordByLevel = (id) => {
-
+const loadWordByLevel = (id,element) => {
+    removeActive()
+  element.classList.add("btn-active");
     showLoader()
   const url = `https://openapi.programming-hero.com/api/level/${id}`;
 
@@ -147,32 +195,76 @@ const loadDetails = (id) =>{
 
 // show details 
 
-const showDetails=(details) =>{
-  console.log(details);
-  modal.showModal()
-  const content = document.getElementById('modal-box');
-  content.innerHTML = ''
-  const div = document.createElement('div')
-  div.innerHTML = `
+// const showDetails=(details) =>{
+//   console.log(details);
+//   modal.showModal()
+//   const content = document.getElementById('modal-box');
+//   content.innerHTML = ''
+//   const div = document.createElement('div')
+//   div.innerHTML = `
   
-  <div class="flex flex-col my-2 justify-center items-center h-[300px] bg-sky-200">
+//   <div class="flex flex-col my-2 justify-center items-center h-[300px] bg-sky-200">
     
-       <h2 class="card-title">${details.word}!</h2>
-    <h2 class="card-title">Meaning / Pronunciation</h2>
+//     <h2 class="card-title">${details.word}!</h2>
+//     <h2 class="card-title">Meaning / Pronunciation</h2>
     
-    <h2 class="card-title">${details.meaning} / ${details.pronunciation}</h2>
+//     <h2 class="card-title">${details.meaning} / ${details.pronunciation}</h2>
+//     </div>
+//   `;
+//   content.append(div)
+
+// }
+
+
+
+
+const showDetails = (details) => {
+  modal.showModal();
+
+  const content = document.getElementById("modal-box");
+  content.innerHTML = "";
+
+  const div = document.createElement("div");
+
+  div.innerHTML = `
+    <h2 class="text-2xl font-bold">${details.word}</h2>
+
+    <p class="mt-2">
+      <strong>Meaning:</strong> ${details.meaning || "No meaning"}
+    </p>
+
+    <p class="mt-2">
+      <strong>Pronunciation:</strong> ${details.pronunciation}
+    </p>
+
+    <p class="mt-4">
+      <strong>Example:</strong><br>
+      ${details.sentence || 'no sentence' }
+    </p>
+
+    <p class="mt-4">
+      <strong>Synonyms:</strong><br>
+      ${details.synonyms?.join(", ") || "No synonyms found"}
+    </p>
+
+    <div class="modal-action">
+      <form method="dialog">
+        <button class="btn btn-primary">
+          Complete Learning
+        </button>
+      </form>
     </div>
-  </div>
   `;
-  content.append(div)
 
-}
-
-
+  content.appendChild(div);
+};
 
 
-
-
+ function pronounceWord(word) {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = "en-US"; // English
+      window.speechSynthesis.speak(utterance);
+    }
 
 
 
